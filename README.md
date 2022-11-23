@@ -4,11 +4,11 @@ SPDX-FileCopyrightText: 2022 Mix Irving
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# ssb-meta-dm-spec
+# ssb-meta-feeds-dm-spec
 
-Version: 1.0
+Version: 0.1
 
-Author: Mix Irving <whimful@gmail.com>
+Author: Mix Irving <mix@protozoa.nz>
 
 License: This work is licensed under a Creative Commons Attribution 4.0 International License.
 
@@ -89,6 +89,7 @@ you attach the metadata containing a public key for encryption.
 - **1.1** Feeds supporting DMs MUST include a public curve25519 key on the `meta/add/derived` message connecting the leaf feed to it's shared
     - this public key MUST be stored in the message content, under `metadata.encryption.public`
     - the message MUST announce the curve used as `curve25519` under `metadata.encryption.curve`
+    - _you will need to persist, or have a strategy for recalling the private part for yourself_
 - **1.2** If a feed does not announce a public key this way you SHOULD NOT DM it
 
 
@@ -128,7 +129,7 @@ a message like the following to my `chess` leaf feed:
 - **2.2** the ciphertext MUST be derived by following the [envelope-spec]
 - **2.3** the `{ key, scheme }` pairs used for encryption MUST be deived by mapping the message `recps`
   - a) for a feed id that's **not** ours:
-    - i) `scheme` MUST be equal to `envelope-id-based-meta-dm-curve2519`
+    - i) `scheme` MUST be equal to `envelope-id-based-meta-feeds-dm-curve2519`
     - ii) `key` MUST be derived by combining mirror leaf feed ids along with the associated DH keys as follows:
     ```js
     const hash = 'SHA256'
