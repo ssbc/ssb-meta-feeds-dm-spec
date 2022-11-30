@@ -8,7 +8,7 @@ This sub-spec defines a way to deterministically derive your DM keys from your m
 
 1. When announcing a leaf feed, we generate a `nonce` (32 bytes of random data)
 2. We combine this with our `seed` using HKDF to generate a curve25519 keypair
-3. we publish the public key AND the `nonce` in the announce message metadata
+3. We publish the public key AND the `nonce` in the announce message's metadata
   ```js
   {
     type: 'meta/add/derived',
