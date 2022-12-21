@@ -129,7 +129,7 @@ a message like the following to my `chess` leaf feed:
 - **2.2** the ciphertext MUST be derived by following the [envelope-spec]
 - **2.3** the `{ key, scheme }` pairs used for encryption MUST be deived by mapping the message `recps`
   - a) for a feed id that's **not** ours:
-    - i) `scheme` MUST be equal to `envelope-id-based-meta-feeds-dm-curve2519`
+    - i) `scheme` MUST be equal to `envelope-id-based-metafeed-announced-curve25519`
     - ii) `key` MUST be derived by combining mirror leaf feed ids along with the associated DH keys as follows:
     ```js
     const hash = 'SHA256'
