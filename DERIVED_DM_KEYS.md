@@ -7,7 +7,7 @@ the private parts of those keys.
 This sub-spec defines a way to deterministically derive your DM keys from your meta-feed seed.
 
 1. When announcing a leaf feed, we generate a `nonce` (32 bytes of random data)
-2. We combine this with our `seed` using HKDF to generate a curve25519 keypair
+2. We combine this with our `seed` using HKDF to generate a curve25519 (X25519) keypair
 3. We publish the public key AND the `nonce` in the announce message's metadata
   ```js
   {
@@ -28,11 +28,22 @@ This sub-spec defines a way to deterministically derive your DM keys from your m
 
 ```js
 const nonce = crypto.randomBytes(32)
+const SECRET_KEY_LENGTH = 32 // crypto_scalarmult_SCALARBYTES
+const PUBLIC_KEY_LENGTH = 32 // crypto_scalarmult_BYTES
 
 function deriveDiffieHellmanKeys (seed, nonce) {
+  const secret_key = hkdf(seed, SECRET_KEY_LENGTH, {
+    salt: 'ssb',
+    info: 'ssb-meta-feeds-dm-v1:' + nonce,
+    hash: 'SHA-256',
+  })
 
-  return hkdf.expand(
+  const public_key = Buffer.alloc(PUBLIC_KEY_LENGTH)
+  sodium.crypto_scalarmult_base(public_key, secret_key)
+
+  return {
+    secret: secret_key,
+    public: public_key
+  }
 }
 ```
-
-
