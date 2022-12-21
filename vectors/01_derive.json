@@ -1,0 +1,12 @@
+{
+  "type": "meta_feeds_direct_message_derived",
+  "description": "calculate a curve25519 keypair from a seed and nonce",
+  "input": {
+    "seed": "iURfhaC1HRB02JEFeTNeVrJIBVbdqV7KNh2fCQ00F0w=",
+    "nonce": "cXEW4rIzXmdDa6TDZZmBBd/EWeZQ8isKjSOjZHPc6Nk="
+  },
+  "output": {
+    "secret": "qm7hjgsgLa5nyd2YRRcY/wn3wlgdhs5ZO1gNiFq4Cwg=",
+    "public": "z1FiDJ6o0U7dmqGNcKAKsAJTd6ZAPteA+s+jJ5Ev1EA="
+  }
+}
